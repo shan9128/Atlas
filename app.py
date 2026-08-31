@@ -29,6 +29,15 @@ messages = [
     {
         "role": "system",
         "content": SYSTEM_PROMPT
+    },
+    {
+        "role": "user",
+        "content": f"""
+                    Use the following context to answer the question.
+
+                    CONTEXT:
+                    {CONTEXT}
+                    """
     }
 ]
 
@@ -75,13 +84,13 @@ while True:
 
     if question == "/help":
         print("""
-Commands:
-/model   - show current model
-/history - show number of messages in memory
-/clear   - clear conversation memory
-/help    - show commands
-/exit    - exit Atlas
-""")
+                Commands:
+                /model   - show current model
+                /history - show number of messages in memory
+                /clear   - clear conversation memory
+                /help    - show commands
+                /exit    - exit Atlas
+                """)
         continue
 
     if question == "/history":

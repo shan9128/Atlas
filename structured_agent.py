@@ -82,9 +82,9 @@ def classify_with_llm(question: str) -> dict:
             "error": "Model returned invalid JSON"
         }
 
-question = input("Ask Atlas: ")
+# question = input("Ask Atlas: ")
 
-result = classify_with_llm(question)
+# result = classify_with_llm(question)
 
 # print("\nPARSED RESULT:")
 # print(result)
@@ -102,20 +102,25 @@ def route_request(classification: Classification) -> str:
         return "Use general response"
 
 
-try:
-    validated = Classification(**result)
+if __name__ == "__main__":
+    question = input("Ask Atlas: ")
 
-    print("\nClassification:")
-    print(f"intent='{validated.intent}'")
-    print(f"needs_tool={validated.needs_tool}")
-    print(f"priority='{validated.priority}'")
-    print(f"confidence={validated.confidence}")
+    result = classify_with_llm(question)
 
-    route = route_request(validated)
+    try:
+        validated = Classification(**result)
 
-    print("\nROUTING DECISION:")
-    print(f"Selected route: {route}")
+        print("\nClassification:")
+        print(f"intent='{validated.intent}'")
+        print(f"needs_tool={validated.needs_tool}")
+        print(f"priority='{validated.priority}'")
+        print(f"confidence={validated.confidence}")
 
-except ValidationError as error:
-    print("\nValidation failed:")
-    print(error)
+        route = route_request(validated)
+
+        print("\nROUTING DECISION:")
+        print(f"Selected route: {route}")
+
+    except ValidationError as error:
+        print("\nValidation failed:")
+        print(error)

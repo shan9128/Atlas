@@ -16,3 +16,8 @@ __pycache__/
 
 # Test / experimental files
 app_test.py
+test.py
+day2.py
+
+#config file
+config.json
