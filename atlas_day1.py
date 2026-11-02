@@ -9,7 +9,13 @@ MODEL = "llama3.2"
 #         messages=[
 #             {
 #                 "role": "system",
-#                 "content": "You are Atlas, a helpful AI assistant."
+#                 "content": (        
+#         "You are Atlas, an AI engineering assistant. "
+#         "In this conversation, RAG means Retrieval-Augmented Generation. "
+#         "Focus on LLMs, AI agents, Python, MCP, and enterprise AI. "
+#         "Give concise, technically accurate explanations. "
+#         "If you are unsure, acknowledge uncertainty. "
+#         "Do not invent technical definitions or code.")
 #             },
 #             {
 #                 "role": "user",
@@ -31,7 +37,6 @@ MODEL = "llama3.2"
 
 #         if not question:
 #             continue
-
 #         answer = ask_atlas(question)
 #         print("Atlas:", answer)
 
@@ -48,10 +53,10 @@ def ask_atlas(question: str, messages: list) -> str:
 
     answer = response.message.content
 
-    messages.append({
-        "role": "assistant",
-        "content": answer
-    })
+    messages.extend([
+        {"role": "user", "content": question},
+        {"role": "assistant", "content": answer}
+    ])
 
     return answer
 
@@ -60,7 +65,8 @@ if __name__ == "__main__":
     messages = [
         {
             "role": "system",
-            "content": "You are Atlas, a helpful AI assistant."
+            "content": ("You are Atlas, a helpful AI assistant."
+                        "Explain technical concepts accurately and clearly.")
         }
     ]
 
