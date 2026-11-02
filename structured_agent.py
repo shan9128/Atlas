@@ -97,9 +97,9 @@ def route_request(classification: Classification) -> str:
     elif classification.intent == "provider":
         return "provider_tool"
     elif classification.intent == "rag":
-        return "Route to knowledge search"
+        return "rag_search"
     else:
-        return "Use general response"
+        return "general_llm"
 
 
 if __name__ == "__main__":
