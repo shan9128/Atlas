@@ -1,0 +1,134 @@
+[
+  {
+    "question": "Why was claim 123 denied?",
+    "expected_intent": "claims",
+    "expected_action": "lookup",
+    "expected_tool": "claims_tool"
+  },
+  {
+    "question": "What is a denied claim?",
+    "expected_intent": "claims",
+    "expected_action": "explain",
+    "expected_tool": "none"
+  },
+  {
+    "question": "Is member M1001 active?",
+    "expected_intent": "member",
+    "expected_action": "lookup",
+    "expected_tool": "member_tool"
+  },
+  {
+    "question": "What is coordination of benefits?",
+    "expected_intent": "claims",
+    "expected_action": "explain",
+    "expected_tool": "none"
+  },
+  {
+    "question": "What is Python?",
+    "expected_intent": "general",
+    "expected_action": "explain",
+    "expected_tool": "none"
+  },
+  {
+  "question": "What is the status of claim CLM456?",
+  "expected_intent": "claims",
+  "expected_action": "lookup",
+  "expected_tool": "claims_tool"
+},
+{
+  "question": "Explain the claims adjudication process.",
+  "expected_intent": "claims",
+  "expected_action": "explain",
+  "expected_tool": "none"
+},
+{
+  "question": "How much was paid for claim 98765?",
+  "expected_intent": "claims",
+  "expected_action": "lookup",
+  "expected_tool": "claims_tool"
+},
+{
+  "question": "What is a CARC code?",
+  "expected_intent": "claims",
+  "expected_action": "explain",
+  "expected_tool": "none"
+},
+{
+  "question": "Was claim 5678 denied due to COB?",
+  "expected_intent": "claims",
+  "expected_action": "lookup",
+  "expected_tool": "claims_tool"
+},
+{
+  "question": "Check eligibility for member M2002.",
+  "expected_intent": "member",
+  "expected_action": "lookup",
+  "expected_tool": "member_tool"
+},
+{
+  "question": "What is member eligibility?",
+  "expected_intent": "member",
+  "expected_action": "explain",
+  "expected_tool": "none"
+},
+{
+  "question": "Is member M3003 enrolled in the Gold plan?",
+  "expected_intent": "member",
+  "expected_action": "lookup",
+  "expected_tool": "member_tool"
+},
+{
+  "question": "Explain the difference between Medicare and Medicaid.",
+  "expected_intent": "member",
+  "expected_action": "explain",
+  "expected_tool": "none"
+},
+{
+  "question": "When did member M4004 coverage terminate?",
+  "expected_intent": "member",
+  "expected_action": "lookup",
+  "expected_tool": "member_tool"
+},
+{
+  "question": "What is an API?",
+  "expected_intent": "general",
+  "expected_action": "explain",
+  "expected_tool": "none"
+},
+{
+  "question": "Explain Python dictionaries.",
+  "expected_intent": "general",
+  "expected_action": "explain",
+  "expected_tool": "none"
+},
+{
+  "question": "What is retrieval augmented generation?",
+  "expected_intent": "general",
+  "expected_action": "explain",
+  "expected_tool": "none"
+},
+{
+  "question": "How does Git branching work?",
+  "expected_intent": "general",
+  "expected_action": "explain",
+  "expected_tool": "none"
+},
+{
+  "question": "Explain the difference between REST APIs and MCP.",
+  "expected_intent": "general",
+  "expected_action": "explain",
+  "expected_tool": "none"
+},
+{
+  "question": "What does RARC mean on an 835 remittance?",
+  "expected_intent": "claims",
+  "expected_action": "explain",
+  "expected_tool": "none"
+},
+{
+  "question": "How does commercial insurance differ from Medicaid coverage?",
+  "expected_intent": "member",
+  "expected_action": "explain",
+  "expected_tool": "none"
+}
+]

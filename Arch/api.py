@@ -2,13 +2,13 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from ollama import chat
 
-from structured_agent import (
+from Arch.structured_agent import (
     classify_with_llm,
     Classification,
     route_request
 )
 
-from agent import run_agent
+from Arch.agent import run_agent
 
 
 MODEL = "llama3.2"
