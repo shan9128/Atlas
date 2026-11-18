@@ -1,0 +1,39 @@
+
+[
+  {
+    "question": "Is member M1001 active?",
+    "expected_tool": "member_tool",
+    "expected_found": true,
+    "expected_answer_contains": ["M1001", "Active", "Gold"]
+  },
+  {
+    "question": "Check eligibility for member M2002.",
+    "expected_tool": "member_tool",
+    "expected_found": true,
+    "expected_answer_contains": ["M2002", "Inactive", "Silver"]
+  },
+  {
+    "question": "What is the status of member M9999?",
+    "expected_tool": "member_tool",
+    "expected_found": false,
+    "expected_answer_contains": ["not found"]
+  },
+  {
+    "question": "Why was claim 123 denied?",
+    "expected_tool": "claims_tool",
+    "expected_found": true,
+    "expected_answer_contains": ["123", "not eligible"]
+  },
+  {
+    "question": "What is the status of claim CLM456?",
+    "expected_tool": "claims_tool",
+    "expected_found": true,
+    "expected_answer_contains": ["CLM456", "$280"]
+  },
+  {
+    "question": "What is the status of claim 999?",
+    "expected_tool": "claims_tool",
+    "expected_found": false,
+    "expected_answer_contains": ["not found"]
+  }
+]
