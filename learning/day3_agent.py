@@ -1,9 +1,9 @@
 
 import re
 
-from day2_classifier import classify_question
-from day3_claims_tool import lookup_claim
-from day3_response import format_claim_response
+from atlas.classifier import classify_question
+from atlas.tools.day3_claims_tool import lookup_claim
+from atlas.responses.day3_response import format_claim_response
 
 
 def run_agent(question):

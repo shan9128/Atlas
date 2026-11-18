@@ -2,7 +2,7 @@
 from unittest.mock import patch
 from types import SimpleNamespace
 
-from day2_classifier import classify_question
+from atlas.classifier import classify_question
 
 
 def test_classifier_retries_invalid_prediction():
@@ -20,7 +20,7 @@ def test_classifier_retries_invalid_prediction():
     )
 
     with patch(
-        "day2_classifier.chat",
+        "atlas.classifier.chat",
         side_effect=[invalid_response, valid_response]
     ) as mock_chat:
 

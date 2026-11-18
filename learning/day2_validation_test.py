@@ -1,5 +1,5 @@
 from pydantic import ValidationError
-from day2_pydantic import AtlasDecision
+from atlas.models import AtlasPrediction, AtlasDecision
 
 
 test_cases = [

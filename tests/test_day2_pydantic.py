@@ -1,6 +1,6 @@
 import pytest
 from pydantic import ValidationError
-from day2_pydantic import AtlasDecision
+from atlas.models import AtlasDecision
 
 
 def test_valid_claim_lookup():

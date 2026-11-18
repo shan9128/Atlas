@@ -1,5 +1,4 @@
-from day2_pydantic import AtlasDecision
-
+from atlas.models import AtlasDecision
 
 def build_decision(intent, action):
 

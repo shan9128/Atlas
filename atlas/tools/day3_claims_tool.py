@@ -1,5 +1,5 @@
 
-from day3_claims_data import CLAIMS
+from data.day3_claims_data import CLAIMS
 
 
 def lookup_claim(claim_id):

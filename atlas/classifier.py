@@ -1,10 +1,9 @@
 from ollama import chat
 from pydantic import ValidationError
+from atlas.models import AtlasPrediction, AtlasDecision
+from atlas.router import build_decision
 
-from day2_pydantic import AtlasPrediction
-from day2_router import build_decision
-
-from day2_guardrails import apply_guardrails
+from atlas.guardrails import apply_guardrails
 
 MODEL = "llama3.2"
 SYSTEM_PROMPT = """

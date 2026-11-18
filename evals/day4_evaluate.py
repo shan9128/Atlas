@@ -1,13 +1,13 @@
 
 import json
 
-from day2_classifier import classify_question
-from day4_agent import run_agent
-from day3_response import format_claim_response
-from day4_response import format_member_response
+from atlas.classifier import classify_question
+from atlas.agent import run_agent
+from atlas.responses.day3_response import format_claim_response
+from atlas.responses.day4_response import format_member_response
 
 
-with open("day4_evals.json", "r") as file:
+with open("evals/day4_evals.json", "r") as file:
     evaluations = json.load(file)
 
 

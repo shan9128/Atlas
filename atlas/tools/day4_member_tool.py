@@ -1,5 +1,5 @@
 
-from day4_member_data import MEMBERS
+from data.day4_member_data import MEMBERS
 
 
 def lookup_member(member_id):

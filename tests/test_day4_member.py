@@ -1,6 +1,6 @@
 
-from day4_member_tool import lookup_member
-from day4_response import format_member_response
+from atlas.tools.day4_member_tool import lookup_member
+from atlas.responses.day4_response import format_member_response
 
 
 def test_active_member():

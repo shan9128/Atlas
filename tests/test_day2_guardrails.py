@@ -1,5 +1,5 @@
-from day2_pydantic import AtlasPrediction
-from day2_guardrails import apply_guardrails
+from atlas.models import AtlasDecision, AtlasPrediction
+from atlas.guardrails import apply_guardrails
 
 
 def test_specific_claim_denial():

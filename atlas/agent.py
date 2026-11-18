@@ -1,10 +1,10 @@
 
 import re
 
-from day2_classifier import classify_question
-from day3_claims_tool import lookup_claim
-from day4_member_tool import lookup_member
-from day4_response import format_member_response
+from atlas.classifier import classify_question
+from atlas.tools.day3_claims_tool import lookup_claim
+from atlas.tools.day4_member_tool import lookup_member
+from atlas.responses.day4_response import format_member_response
 
 def run_agent(question):
 

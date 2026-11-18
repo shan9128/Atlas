@@ -1,4 +1,4 @@
-from day2_router import build_decision
+from atlas.router import build_decision
 
 
 tests = [

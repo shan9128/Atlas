@@ -1,8 +1,8 @@
 import json
-from day2_classifier import classify_question
+from atlas.classifier import classify_question
 
 
-with open("day2_evals.json", "r") as file:
+with open("evals/day2_evals.json", "r") as file:
     test_cases = json.load(file)
 
 intent_correct = 0

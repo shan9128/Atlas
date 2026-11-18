@@ -1,6 +1,5 @@
-
-from day3_claims_tool import lookup_claim
-from day3_response import format_claim_response
+from atlas.tools.day3_claims_tool import lookup_claim
+from atlas.responses.day3_response import format_claim_response
 
 
 def test_denied_claim():
