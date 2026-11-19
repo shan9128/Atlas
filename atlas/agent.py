@@ -1,10 +1,12 @@
 
 import re
+from unittest import result
 
 from atlas.classifier import classify_question
 from atlas.tools.day3_claims_tool import lookup_claim
 from atlas.tools.day4_member_tool import lookup_member
 from atlas.responses.day4_response import format_member_response
+from atlas.audit import log_agent_event
 
 def run_agent(question):
 
@@ -25,7 +27,24 @@ def run_agent(question):
 
         claim_id = match.group(1)
 
-        return lookup_claim(claim_id)
+
+        try:
+            result = lookup_claim(claim_id)
+
+        except Exception:
+            log_agent_event(
+                tool_name="claims_lookup",
+                outcome="error"
+            )
+            raise
+
+        log_agent_event(
+            tool_name="claims_lookup",
+            outcome="found" if result.get("found") else "not_found"
+        )
+
+        return result
+
 
     elif decision.tool == "member_tool":
 
@@ -39,15 +58,28 @@ def run_agent(question):
             return {"error": "Member ID not found in question"}
 
         member_id = match.group(1)
+    
+        try:
+            result = lookup_member(member_id)
 
-        return lookup_member(member_id)
+        except Exception:
+            log_agent_event(
+                tool_name="member_lookup",
+                outcome="error"
+            )
+            raise
+
+        log_agent_event(
+            tool_name="member_lookup",
+            outcome="found" if result.get("found") else "not_found"
+        )
+
+        return result
 
     return {
         "message": "No supported tool executed",
         "decision": decision.model_dump()
     }
-
-
 
 if __name__ == "__main__":
 

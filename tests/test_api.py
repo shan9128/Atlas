@@ -1,6 +1,7 @@
 
 from fastapi.testclient import TestClient
 from atlas.api import app
+from unittest.mock import Mock
 
 client = TestClient(app)
 
@@ -124,3 +125,90 @@ def test_agent_service_unavailable():
     assert response.json() == {
         "detail": "Atlas AI service is temporarily unavailable"
     }
+
+def test_agent_internal_error():
+    with patch(
+        "atlas.api.run_agent",
+        side_effect=RuntimeError("Internal database details")
+    ):
+        response = client.post(
+            "/agent",
+            json={"question": "Why was claim 123 denied?"}
+        )
+
+    assert response.status_code == 500
+
+    assert response.json() == {
+        "detail": "Atlas encountered an internal processing error"
+    }
+
+    assert "Internal database details" not in response.text
+
+def test_full_claims_api_integration():
+    mock_decision = Mock()
+    mock_decision.tool = "claims_tool"
+    mock_decision.model_dump.return_value = {
+        "tool": "claims_tool"
+    }
+
+    with patch(
+        "atlas.agent.classify_question",
+        return_value=mock_decision
+    ), patch(
+        "atlas.agent.log_agent_event"
+    ) as mock_audit:
+
+        response = client.post(
+            "/agent",
+            json={"question": "Why was claim 123 denied?"}
+        )
+
+    assert response.status_code == 200
+
+    assert response.json()["answer"] == (
+        "Claim 123 was denied because "
+        "Member not eligible on date of service."
+    )
+
+    mock_audit.assert_called_once_with(
+        tool_name="claims_lookup",
+        outcome="found"
+    )
+
+
+from uuid import UUID
+
+
+def test_request_id_header():
+    response = client.get("/health")
+
+    assert response.status_code == 200
+
+    request_id = response.headers["X-Request-ID"]
+
+    assert UUID(request_id).version == 4
+
+
+def test_request_id_matches_audit_log(caplog):
+    mock_decision = Mock()
+    mock_decision.tool = "claims_tool"
+    mock_decision.model_dump.return_value = {
+        "tool": "claims_tool"
+    }
+
+    with patch(
+        "atlas.agent.classify_question",
+        return_value=mock_decision
+    ), caplog.at_level("INFO", logger="atlas.audit"):
+
+        response = client.post(
+            "/agent",
+            json={"question": "Why was claim 123 denied?"}
+        )
+
+    assert response.status_code == 200
+
+    request_id = response.headers["X-Request-ID"]
+
+    assert f"request_id={request_id}" in caplog.text
+    assert "Agent tool=claims_lookup outcome=found" in caplog.text
