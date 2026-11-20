@@ -7,8 +7,35 @@ from atlas.tools.day3_claims_tool import lookup_claim
 from atlas.tools.day4_member_tool import lookup_member
 from atlas.responses.day4_response import format_member_response
 from atlas.audit import log_agent_event
+from atlas.tools.sqlite_claims_tool import lookup_claim_sqlite
 
 def run_agent(question):
+
+    # Explicit Kaggle claims lookup
+    match = re.search(
+        r"\bkaggle\s+claim\s+([A-Za-z0-9]+)\b",
+        question,
+        re.IGNORECASE
+    )
+
+    if match:
+        claim_id = match.group(1)
+
+        try:
+            result = lookup_claim_sqlite(claim_id)
+        except Exception:
+            log_agent_event(
+                tool_name="sqlite_claims_lookup",
+                outcome="error"
+            )
+            raise
+
+        log_agent_event(
+            tool_name="sqlite_claims_lookup",
+            outcome="found" if result["found"] else "not_found"
+        )
+
+        return result
 
     decision = classify_question(question)
 
@@ -80,6 +107,7 @@ def run_agent(question):
         "message": "No supported tool executed",
         "decision": decision.model_dump()
     }
+
 
 if __name__ == "__main__":
 
