@@ -1,0 +1,13 @@
+
+POLICY PA-101: PRIOR AUTHORIZATION
+Outpatient MRI requires prior authorization.
+Emergency MRI does not require prior authorization.
+
+POLICY CL-201: CLAIM SUBMISSION
+Claims must be submitted within 90 days of the service date.
+
+POLICY EL-301: MEMBER ELIGIBILITY
+Members must have active coverage on the date of service.
+
+POLICY COB-401: COORDINATION OF BENEFITS
+When another insurer is primary, the primary insurer must process the claim before the secondary insurer.
