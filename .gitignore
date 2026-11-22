@@ -21,3 +21,10 @@ day2.py
 
 #config file
 config.json
+
+logs/
+
+database/*.db
+data/kaggle/
+
+settings.json
