@@ -26,3 +26,5 @@ logs/
 
 database/*.db
 data/kaggle/
+
+settings.json
