@@ -8,7 +8,8 @@ from atlas.tools.day4_member_tool import lookup_member
 from atlas.responses.day4_response import format_member_response
 from atlas.audit import log_agent_event
 from atlas.tools.sqlite_claims_tool import lookup_claim_sqlite
-from atlas.rag import ask_policy
+# from atlas.rag import ask_policy
+from atlas.rag import ask_policy_separately
 
 def run_agent(question):
 
@@ -39,8 +40,30 @@ def run_agent(question):
         return result
 
     # Explicit healthcare policy lookup
-    if "MRI" in question.upper() and "POLICY" in question.upper():
-        answer = ask_policy(question, "MRI")
+    # if "MRI" in question.upper() and "POLICY" in question.upper():
+    #     answer = ask_policy(question, "MRI")
+
+    #     log_agent_event(
+    #         tool_name="policy_rag",
+    #         outcome="answered"
+    #     )
+
+    #     return {
+    #         "source": "healthcare_policies.txt",
+    #         "answer": answer
+    #     }
+
+    # Healthcare policy RAG route
+    policy_keywords = [
+        "mri", "authorization", "eligibility", "policy"
+    ]
+
+    
+    if (
+        not re.search(r"\bmember\s+[A-Za-z0-9]+\b", question, re.IGNORECASE)
+        and any(word in question.lower() for word in policy_keywords)
+    ):
+        answer = ask_policy_separately(question)
 
         log_agent_event(
             tool_name="policy_rag",
