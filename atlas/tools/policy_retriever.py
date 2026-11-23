@@ -20,7 +20,7 @@ def search_policy(keyword):
 
 
 def extract_keywords(question):
-    keywords = ["mri", "eligibility", "claims", "authorization"]
+    keywords = ["mri", "eligibility","claim", "claims", "authorization"]
 
     words = question.lower().replace("?", "").split()
     detected_keywords = []
