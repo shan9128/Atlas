@@ -1,0 +1,28 @@
+
+[
+    {
+        "id": "RAG-001",
+        "question": "Does outpatient MRI require authorization?",
+        "expected_policy": "PA-101",
+        "expected_answer": "Outpatient MRI requires prior authorization."
+    },
+    {
+        "id": "RAG-002",
+        "question": "Does emergency MRI require authorization?",
+        "expected_policy": "PA-101",
+        "expected_answer": "Emergency MRI does not require prior authorization."
+    },
+    {
+        "id": "RAG-003",
+        "question": "What are member eligibility requirements?",
+        "expected_policy": "EL-301",
+        "expected_answer": "Members must have active coverage on the date of service."
+    },
+    {
+        "id": "RAG-004",
+        "question": "What is the claim submission deadline?",
+        "expected_policy": "CL-201",
+        "expected_answer": "Claims must be submitted within 90 days of the service date."
+    }
+]
+
